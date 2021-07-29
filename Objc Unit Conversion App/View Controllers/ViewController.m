@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "OutputWeightUnit.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,7 @@
 // MARK: - Properties
 
 UITextField *_textField;
+UILabel *_inchUnitLabel;
 
 // MARK: - Lifecycles
 
@@ -32,6 +34,7 @@ UITextField *_textField;
 
 - (void)setUpSubviews {
     [self setUpTextField];
+    [self setUpInchUnitLabel];
 }
 
 - (void)setUpTextField {
@@ -40,15 +43,26 @@ UITextField *_textField;
     _textField.layer.borderColor = [[UIColor darkGrayColor] CGColor];
     _textField.layer.borderWidth = 1.0;
     _textField.layer.cornerRadius = 5.0;
-    _textField.placeholder = @"Enter measurement in inches";
+    _textField.placeholder = @" Enter measurement in inches";
     
     [self.view addSubview: _textField];
+}
+
+- (void)setUpInchUnitLabel {
+    _inchUnitLabel = [[UILabel alloc] init];
+    
+    _inchUnitLabel.text = @"in inches";
+    _inchUnitLabel.numberOfLines = 1;
+    _inchUnitLabel.textColor = [UIColor blackColor];
+    
+    [self.view addSubview:_inchUnitLabel];
 }
 
 // MARK: - Constraints
 
 - (void)setUpConstraints {
     [self setUpTextFieldConstraints];
+    [self setUpInchUnitLabelConstraints];
 }
 
 - (void)setUpTextFieldConstraints {
@@ -81,6 +95,20 @@ UITextField *_textField;
     NSArray *constraints = [NSArray arrayWithObjects:trailing, leading, top, nil];
     
     [self.view addConstraints: constraints];
+}
+
+- (void)setUpInchUnitLabelConstraints {
+    _inchUnitLabel.translatesAutoresizingMaskIntoConstraints = FALSE;
+    
+    // CenterX
+    NSLayoutConstraint *center = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    
+    // Top
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    
+    NSArray *constraints = [NSArray arrayWithObjects:center, top, nil];
+
+    [self.view addConstraints:constraints];
 }
 
 // MARK: - Input Value Processing and Conversion

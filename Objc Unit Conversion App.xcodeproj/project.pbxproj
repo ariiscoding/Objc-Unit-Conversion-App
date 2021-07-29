@@ -27,6 +27,7 @@
 		72A5340826B359730069B90C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		72A5340A26B359730069B90C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72A5340B26B359730069B90C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		72A5341526B36E140069B90C /* OutputWeightUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutputWeightUnit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +62,7 @@
 			children = (
 				72A5341226B359E80069B90C /* App Startup */,
 				72A5341326B35C010069B90C /* View Controllers */,
+				72A5341426B36DD00069B90C /* Models */,
 				72A5340526B359730069B90C /* Assets.xcassets */,
 				72A5340726B359730069B90C /* LaunchScreen.storyboard */,
 				72A5340A26B359730069B90C /* Info.plist */,
@@ -87,6 +89,14 @@
 				72A5340026B359710069B90C /* ViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		72A5341426B36DD00069B90C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				72A5341526B36E140069B90C /* OutputWeightUnit.h */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
