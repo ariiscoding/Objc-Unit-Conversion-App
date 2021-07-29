@@ -23,7 +23,7 @@
     // Configure the app to run without a storyboard
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.windowScene = (UIWindowScene *) scene;
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController: ViewController.new];
+    self.window.rootViewController = [ViewController alloc];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 }

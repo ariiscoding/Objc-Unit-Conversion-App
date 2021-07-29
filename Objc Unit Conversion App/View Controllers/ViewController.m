@@ -16,7 +16,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setUpSubviews];
+    [self setUpConstraints];
 }
 
+
+// MARK: - UI Setups
+
+- (void)setUpSubviews {
+    
+}
+
+- (void)setUpConstraints {
+    
+}
 
 @end
