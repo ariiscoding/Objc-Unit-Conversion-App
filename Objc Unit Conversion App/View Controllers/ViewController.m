@@ -40,6 +40,7 @@ UITextField *_textField;
     _textField.layer.borderColor = [[UIColor darkGrayColor] CGColor];
     _textField.layer.borderWidth = 1.0;
     _textField.layer.cornerRadius = 5.0;
+    _textField.placeholder = @"Enter measurement in inches";
     
     [self.view addSubview: _textField];
 }
@@ -81,5 +82,28 @@ UITextField *_textField;
     
     [self.view addConstraints: constraints];
 }
+
+// MARK: - Input Value Processing and Conversion
+
+- (NSString*)getTextFieldCurrentValue {
+    return _textField.text;
+}
+
+- (double)getTextFieldCurrentDoubleValue {
+    return [[self getTextFieldCurrentValue] doubleValue];
+}
+
+- (double)convertToCmFrom: (double)inches {
+    double conversionRate = 2.54;
+    
+    return inches * conversionRate;
+}
+
+//- (NSString*)getConvertedValueInCm {
+//    double inchesDouble = [self getTextFieldCurrentDoubleValue];
+//    double cmDouble = [self convertToCmFrom:inchesDouble];
+//    
+//    return [[NSString alloc] initWithFormat:@".2f", cmDouble];
+//}
 
 @end
