@@ -63,12 +63,14 @@ UISegmentedControl *_segmentedControl;
 }
 
 - (NSArray*)getAvailableUnitsStringArray {
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:_destinationUnits.count];
+    NSMutableArray *array = [NSMutableArray new];
     
     for (int i = 0; i < _destinationUnits.count; i++) {
         OutputWeightUnit *unit = [_destinationUnits objectAtIndex: i];
         
-        [array replaceObjectAtIndex:i withObject:unit];
+        NSString* unitString = [unit getUnitName];
+        
+        [array addObject:unitString];
     }
     
     return [[NSArray alloc] initWithArray:array];

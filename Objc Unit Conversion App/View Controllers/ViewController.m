@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "OutputWeightUnit.h"
+#import "DestinationUnitSelectorViewController.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,7 @@
 
 UITextField *_textField;
 UILabel *_inchUnitLabel;
+DestinationUnitSelectorViewController *_unitSelector;
 
 // MARK: - Lifecycles
 
@@ -35,6 +37,7 @@ UILabel *_inchUnitLabel;
 - (void)setUpSubviews {
     [self setUpTextField];
     [self setUpInchUnitLabel];
+    [self setUpUnitSelector];
 }
 
 - (void)setUpTextField {
@@ -58,11 +61,18 @@ UILabel *_inchUnitLabel;
     [self.view addSubview:_inchUnitLabel];
 }
 
+- (void)setUpUnitSelector {
+    _unitSelector = [[DestinationUnitSelectorViewController alloc] init];
+    
+    [self.view addSubview:_unitSelector.view];
+}
+
 // MARK: - Constraints
 
 - (void)setUpConstraints {
     [self setUpTextFieldConstraints];
     [self setUpInchUnitLabelConstraints];
+    [self setUpUnitSelectorConstraints];
 }
 
 - (void)setUpTextFieldConstraints {
@@ -101,13 +111,29 @@ UILabel *_inchUnitLabel;
     _inchUnitLabel.translatesAutoresizingMaskIntoConstraints = FALSE;
     
     // CenterX
-    NSLayoutConstraint *center = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
     
     // Top
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
     
-    NSArray *constraints = [NSArray arrayWithObjects:center, top, nil];
+    NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
 
+    [self.view addConstraints:constraints];
+}
+
+- (void)setUpUnitSelectorConstraints {
+    UIView *selector = _unitSelector.view;
+    
+    selector.translatesAutoresizingMaskIntoConstraints = false;
+    
+    // Center X
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:selector attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    
+    // Top
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:selector attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_inchUnitLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    
+    NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
+    
     [self.view addConstraints:constraints];
 }
 
