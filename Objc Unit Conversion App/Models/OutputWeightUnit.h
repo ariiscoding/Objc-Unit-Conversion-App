@@ -8,9 +8,26 @@
 #ifndef OutputWeightUnit_h
 #define OutputWeightUnit_h
 
+#import <Foundation/Foundation.h>
+
 typedef enum {
     centimeter, meter, feet, mile
-}OutputWeightUnit;
+}OutputWeightUnitCase;
 
+@interface OutputWeightUnit : NSObject
+
+// MARK: - Properties
+
+{
+    OutputWeightUnitCase _unit;
+}
+
+// MARK: - Methods
+
+- (id)initWith: (OutputWeightUnitCase)unit; 
+
+- (NSString*)getUnitName;
+
+@end
 
 #endif /* OutputWeightUnit_h */
