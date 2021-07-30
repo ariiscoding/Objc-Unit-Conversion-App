@@ -30,4 +30,20 @@
     }
 }
 
++ (OutputWeightUnit*)cm {
+    return [[OutputWeightUnit alloc] initWith:centimeter];
+}
+
++ (OutputWeightUnit*)meter {
+    return [[OutputWeightUnit alloc] initWith:meter];
+}
+
++ (OutputWeightUnit*)feet {
+    return [[OutputWeightUnit alloc] initWith:feet];
+}
+
++ (OutputWeightUnit*)mile {
+    return [[OutputWeightUnit alloc] initWith:centimeter];
+}
+
 @end

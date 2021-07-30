@@ -30,7 +30,12 @@ NSArray *_destinationUnits;
 // MARK: - Helper Methods
 
 - (void)injectAllAvailableUnits {
-//    _destinationUnits = [NSArray arrayWithObjects:centimeter, meter, feet, mile, nil];
+    OutputWeightUnit *cm = OutputWeightUnit.cm;
+    OutputWeightUnit *meter = OutputWeightUnit.meter;
+    OutputWeightUnit *feet = OutputWeightUnit.feet;
+    OutputWeightUnit *mile = OutputWeightUnit.mile;
+    
+    _destinationUnits = [NSArray arrayWithObjects:cm, meter, feet, mile, nil];
 }
 
 @end

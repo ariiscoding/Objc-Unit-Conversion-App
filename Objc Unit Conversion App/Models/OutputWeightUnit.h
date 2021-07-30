@@ -22,6 +22,13 @@ typedef enum {
     OutputWeightUnitCase _unit;
 }
 
+// MARK: - Class Functions
+
++ (OutputWeightUnit*)cm;
++ (OutputWeightUnit*)meter;
++ (OutputWeightUnit*)feet;
++ (OutputWeightUnit*)mile;
+
 // MARK: - Methods
 
 - (id)initWith: (OutputWeightUnitCase)unit; 
