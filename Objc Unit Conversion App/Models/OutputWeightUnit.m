@@ -30,6 +30,25 @@
     }
 }
 
+- (double)getConversionRateFromCm {
+    switch (_unit) {
+    case centimeter:
+        return 2.54;
+    case meter:
+        return 0.0254;
+    case feet:
+        return 0.0833333;
+    case mile:
+        return (1.0/63360);
+    }
+}
+
+- (double)convertFrom: (double)cm {
+    double rate = [self getConversionRateFromCm];
+    
+    return cm * rate;
+}
+
 + (OutputWeightUnit*)cm {
     return [[OutputWeightUnit alloc] initWith:centimeter];
 }

@@ -31,6 +31,8 @@ UISegmentedControl *_segmentedControl;
 - (void)setUpSegmentedControl {
     _segmentedControl = [[UISegmentedControl alloc] initWithItems: [self getAvailableUnitsStringArray]];
     
+    _segmentedControl.selectedSegmentIndex = 0;
+    
     [self.view addSubview:_segmentedControl];
 }
 
@@ -74,6 +76,14 @@ UISegmentedControl *_segmentedControl;
     }
     
     return [[NSArray alloc] initWithArray:array];
+}
+
+- (NSInteger)getSelectedSegmentIndex {
+    return _segmentedControl.selectedSegmentIndex;
+}
+
+- (OutputWeightUnit*)getSelectedDestinationUnit {
+    return _destinationUnits[[self getSelectedSegmentIndex]];
 }
 
 @end
