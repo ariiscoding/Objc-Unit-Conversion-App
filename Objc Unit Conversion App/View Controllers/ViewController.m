@@ -20,6 +20,7 @@
 UITextField *_textField;
 UILabel *_inchUnitLabel;
 DestinationUnitSelectorViewController *_unitSelector;
+UIButton *_updateButton;
 
 // MARK: - Lifecycles
 
@@ -38,6 +39,7 @@ DestinationUnitSelectorViewController *_unitSelector;
     [self setUpTextField];
     [self setUpInchUnitLabel];
     [self setUpUnitSelector];
+    [self setUpUpdateButton];
 }
 
 - (void)setUpTextField {
@@ -67,12 +69,22 @@ DestinationUnitSelectorViewController *_unitSelector;
     [self.view addSubview:_unitSelector.view];
 }
 
+- (void)setUpUpdateButton {
+    _updateButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_updateButton setTitle:@"update" forState:UIControlStateNormal];
+    
+    [_updateButton addTarget:self action:@selector(updateConvertedValue) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_updateButton];
+}
+
 // MARK: - Constraints
 
 - (void)setUpConstraints {
     [self setUpTextFieldConstraints];
     [self setUpInchUnitLabelConstraints];
     [self setUpUnitSelectorConstraints];
+    [self setUpUpdateButtonConstraints];
 }
 
 - (void)setUpTextFieldConstraints {
@@ -137,7 +149,25 @@ DestinationUnitSelectorViewController *_unitSelector;
     [self.view addConstraints:constraints];
 }
 
+- (void)setUpUpdateButtonConstraints {
+    _updateButton.translatesAutoresizingMaskIntoConstraints = false;
+    
+    // Center X
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:_updateButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    
+    // Top
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_updateButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_unitSelector.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    
+    NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
+    
+    [self.view addConstraints:constraints];
+}
+
 // MARK: - Input Value Processing and Conversion
+
+- (void)updateConvertedValue {
+    NSLog(@"Update");
+}
 
 - (NSString*)getTextFieldCurrentValue {
     return _textField.text;
