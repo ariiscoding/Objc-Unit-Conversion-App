@@ -13,8 +13,6 @@
 
 @interface DestinationUnitSelectorViewController : UIViewController
 
-- (NSInteger)getSelectedSegmentIndex;
-
 - (OutputWeightUnit*)getSelectedDestinationUnit;
 
 - (NSString*)getCurrentlySelectedUnitString;

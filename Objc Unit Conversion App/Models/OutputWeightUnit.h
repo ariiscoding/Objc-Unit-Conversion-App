@@ -35,10 +35,6 @@ typedef enum {
 
 - (NSString*)getUnitName;
 
-- (int)getSelectedSegmentIndex;
-
-- (OutputWeightUnit*)getSelectedDestinationUnit;
-
 - (double)convertFrom: (double)cm;
 
 @end

@@ -194,7 +194,17 @@ CGFloat _standardVerticalSpacing = 30;
 // MARK: - Input Value Processing and Conversion
 
 - (void)updateConvertedValue {
-    NSLog(@"Update");
+    double currentValue = [self getTextFieldCurrentDoubleValue];
+    
+    OutputWeightUnit* unit = [_unitSelector getSelectedDestinationUnit];
+    
+    double convertedValue = [unit convertFrom:currentValue];
+    
+    NSString *convertedValueString = [NSString stringWithFormat:@"%.02f", convertedValue];
+    
+    NSString *valueWithUnit = [NSString stringWithFormat:@"%@%@%@%@", convertedValueString, @" ", [_unitSelector getCurrentlySelectedUnitString], @"(s)"];
+    
+    _outputValueLabel.text = valueWithUnit;
 }
 
 - (NSString*)getTextFieldCurrentValue {
@@ -204,18 +214,5 @@ CGFloat _standardVerticalSpacing = 30;
 - (double)getTextFieldCurrentDoubleValue {
     return [[self getTextFieldCurrentValue] doubleValue];
 }
-
-- (double)convertToCmFrom: (double)inches {
-    double conversionRate = 2.54;
-    
-    return inches * conversionRate;
-}
-
-//- (NSString*)getConvertedValueInCm {
-//    double inchesDouble = [self getTextFieldCurrentDoubleValue];
-//    double cmDouble = [self convertToCmFrom:inchesDouble];
-//    
-//    return [[NSString alloc] initWithFormat:@".2f", cmDouble];
-//}
 
 @end

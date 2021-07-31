@@ -30,7 +30,7 @@
     }
 }
 
-- (double)getConversionRateFromCm {
+- (double)getConversionRateFromInches {
     switch (_unit) {
     case centimeter:
         return 2.54;
@@ -43,10 +43,10 @@
     }
 }
 
-- (double)convertFrom: (double)cm {
-    double rate = [self getConversionRateFromCm];
+- (double)convertFrom: (double)inches {
+    double rate = [self getConversionRateFromInches];
     
-    return cm * rate;
+    return inches * rate;
 }
 
 + (OutputWeightUnit*)cm {
@@ -62,7 +62,7 @@
 }
 
 + (OutputWeightUnit*)mile {
-    return [[OutputWeightUnit alloc] initWith:centimeter];
+    return [[OutputWeightUnit alloc] initWith:mile];
 }
 
 @end
