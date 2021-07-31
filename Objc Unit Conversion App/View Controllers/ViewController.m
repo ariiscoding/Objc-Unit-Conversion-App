@@ -21,6 +21,9 @@ UITextField *_textField;
 UILabel *_inchUnitLabel;
 DestinationUnitSelectorViewController *_unitSelector;
 UIButton *_updateButton;
+UILabel *_outputValueLabel;
+
+CGFloat _standardVerticalSpacing = 30;
 
 // MARK: - Lifecycles
 
@@ -40,6 +43,7 @@ UIButton *_updateButton;
     [self setUpInchUnitLabel];
     [self setUpUnitSelector];
     [self setUpUpdateButton];
+    [self setupOutputValueLabel];
 }
 
 - (void)setUpTextField {
@@ -78,6 +82,15 @@ UIButton *_updateButton;
     [self.view addSubview:_updateButton];
 }
 
+- (void)setupOutputValueLabel {
+    _outputValueLabel = [[UILabel alloc] init];
+    _outputValueLabel.text = @"Click update to get a value";
+    _outputValueLabel.numberOfLines = 0;
+    _outputValueLabel.textColor = UIColor.blackColor;
+    
+    [self.view addSubview:_outputValueLabel];
+}
+
 // MARK: - Constraints
 
 - (void)setUpConstraints {
@@ -85,6 +98,7 @@ UIButton *_updateButton;
     [self setUpInchUnitLabelConstraints];
     [self setUpUnitSelectorConstraints];
     [self setUpUpdateButtonConstraints];
+    [self setUpOutputValueLabelConstraints];
 }
 
 - (void)setUpTextFieldConstraints {
@@ -126,7 +140,7 @@ UIButton *_updateButton;
     NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
     
     // Top
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_inchUnitLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_textField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:_standardVerticalSpacing];
     
     NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
 
@@ -142,7 +156,7 @@ UIButton *_updateButton;
     NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:selector attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
     
     // Top
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:selector attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_inchUnitLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:selector attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_inchUnitLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:_standardVerticalSpacing];
     
     NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
     
@@ -156,11 +170,25 @@ UIButton *_updateButton;
     NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:_updateButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
     
     // Top
-    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_updateButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_unitSelector.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30];
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_updateButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_unitSelector.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:_standardVerticalSpacing];
     
     NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
     
     [self.view addConstraints:constraints];
+}
+
+- (void)setUpOutputValueLabelConstraints {
+    _outputValueLabel.translatesAutoresizingMaskIntoConstraints = FALSE;
+    
+    // Center X
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:_outputValueLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    
+    // Top
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:_outputValueLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_updateButton attribute:NSLayoutAttributeBottom multiplier:1.0 constant:_standardVerticalSpacing];
+    
+    NSArray *constraints = [NSArray arrayWithObjects:centerX, top, nil];
+    
+    [self.view addConstraints: constraints];
 }
 
 // MARK: - Input Value Processing and Conversion
