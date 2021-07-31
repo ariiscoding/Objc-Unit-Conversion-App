@@ -6,7 +6,6 @@
 //
 
 #import "DestinationUnitSelectorViewController.h"
-#import "OutputWeightUnit.h"
 
 @implementation DestinationUnitSelectorViewController
 
@@ -84,6 +83,12 @@ UISegmentedControl *_segmentedControl;
 
 - (OutputWeightUnit*)getSelectedDestinationUnit {
     return _destinationUnits[[self getSelectedSegmentIndex]];
+}
+
+- (NSString*)getCurrentlySelectedUnitString {
+    OutputWeightUnit *unit = [self getSelectedDestinationUnit];
+    
+    return [unit getUnitName];
 }
 
 @end
